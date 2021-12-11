@@ -1,13 +1,16 @@
 /*
  * @Author: 张晗
  * @Date: 2021-12-07 11:55:26
- * @LastEditors: 张晗
- * @LastEditTime: 2021-12-07 14:39:58
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-12-10 15:03:10
  * @Description:
  */
+const fs = require('fs')
+const path = require('path')
+
 module.exports = {
   title: 'Pro Antd',
-  description: 'Pro Antd Docment',
+  description: 'Pro Ant Design Document',
   markdown: {
     lineNumbers: true,
     toc: {
@@ -28,11 +31,51 @@ module.exports = {
       {
         text: '工具',
         link: '/tool/',
-        target: '_blank',
+        target: '_self',
         rel: '',
       },
     ],
-    sidebar: 'auto', // 侧边栏配置
-    sidebarDepth: 2, // 侧边栏显示2级
+    sidebar: {
+      '/guide/': [
+        {
+          title: '组件',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            '',
+            'getting-started',
+            'pro-select',
+            'pro-select-grid',
+            'pro-radio',
+            'pro-datepicker',
+            'pro-upload-file',
+            'pro-upload-img',
+          ],
+        },
+      ],
+      '/tool/': [
+        {
+          title: '工具',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: ['', 'storage', 'format', 'download'],
+        },
+      ],
+    },
   },
+}
+
+function getSideBar(folder, title) {
+  const extension = ['.md']
+
+  const files = fs
+    .readdirSync(path.join(`${__dirname}/../${folder}`))
+    .filter(
+      (item) =>
+        item.toLowerCase() != 'readme.md' &&
+        fs.statSync(path.join(`${__dirname}/../${folder}`, item)).isFile() &&
+        extension.includes(path.extname(item))
+    )
+
+  return [{ title: title, children: ['', ...files] }]
 }
