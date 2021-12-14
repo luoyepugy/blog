@@ -1,8 +1,8 @@
 /*
  * @Author: 张晗
  * @Date: 2021-12-07 11:55:26
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-12-10 15:03:10
+ * @LastEditors: 张晗
+ * @LastEditTime: 2021-12-13 10:20:28
  * @Description:
  */
 const fs = require('fs')
@@ -40,7 +40,7 @@ module.exports = {
         {
           title: '组件',
           collapsable: false,
-          sidebarDepth: 2,
+          // sidebarDepth: 2,
           children: [
             '',
             'getting-started',
@@ -57,7 +57,7 @@ module.exports = {
         {
           title: '工具',
           collapsable: false,
-          sidebarDepth: 2,
+          // sidebarDepth: 2,
           children: ['', 'storage', 'format', 'download'],
         },
       ],
