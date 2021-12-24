@@ -2,7 +2,7 @@
  * @Author: 张晗
  * @Date: 2021-12-07 11:55:26
  * @LastEditors: 张晗
- * @LastEditTime: 2021-12-13 10:20:28
+ * @LastEditTime: 2021-12-22 12:27:38
  * @Description:
  */
 const fs = require('fs')
@@ -53,12 +53,12 @@ module.exports = {
           ],
         },
       ],
-      '/tool/': [
+      '/util/': [
         {
           title: '工具',
           collapsable: false,
           // sidebarDepth: 2,
-          children: ['', 'storage', 'format', 'download'],
+          children: ['', 'storage', 'format', 'download', 'other'],
         },
       ],
     },

@@ -4,11 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "vuepress": "^1.8.2"
+    "typescript": "^4.5.4",
+    "vuepress": "^1.8.2",
+    "yalc": "^1.0.0-pre.53"
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "deploy": "bash deploy.sh"
+    "deploy": "bash deploy.sh",
+    "utils:dev": "yalc publish",
+    "utils:watch": "nodemon --ignore dist/ --ignore node_modules/ --watch utils/ -C -e ts,tsx,scss -x 'npm run utils:dev'"
   }
 }

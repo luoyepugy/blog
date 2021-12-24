@@ -6,6 +6,8 @@
 
 # production
 /build
+/js
+/_site
 
 # misc
 .DS_Store
