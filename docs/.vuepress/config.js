@@ -2,11 +2,11 @@
  * @Author: 张晗
  * @Date: 2021-12-07 11:55:26
  * @LastEditors: 张晗
- * @LastEditTime: 2021-12-22 12:27:38
+ * @LastEditTime: 2021-12-27 16:40:48
  * @Description:
  */
-const fs = require('fs')
-const path = require('path')
+const fs = require('fs');
+const path = require('path');
 
 module.exports = {
   title: 'Pro Antd',
@@ -30,7 +30,7 @@ module.exports = {
       },
       {
         text: '工具',
-        link: '/tool/',
+        link: '/util/',
         target: '_self',
         rel: '',
       },
@@ -63,19 +63,4 @@ module.exports = {
       ],
     },
   },
-}
-
-function getSideBar(folder, title) {
-  const extension = ['.md']
-
-  const files = fs
-    .readdirSync(path.join(`${__dirname}/../${folder}`))
-    .filter(
-      (item) =>
-        item.toLowerCase() != 'readme.md' &&
-        fs.statSync(path.join(`${__dirname}/../${folder}`, item)).isFile() &&
-        extension.includes(path.extname(item))
-    )
-
-  return [{ title: title, children: ['', ...files] }]
-}
+};

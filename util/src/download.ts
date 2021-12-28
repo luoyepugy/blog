@@ -2,7 +2,7 @@
  * @Author: 张晗
  * @Date: 2021-12-24 11:25:01
  * @LastEditors: 张晗
- * @LastEditTime: 2021-12-24 17:01:45
+ * @LastEditTime: 2021-12-27 11:18:54
  * @Description: Download下载
  */
 
@@ -14,7 +14,7 @@ export interface IDownload {
    * @param params 接口参数，eg: {fileName: '导出'}
    * @param name 文件名称
    */
-  labelByA: (url: string, params: any, name?: string) => void;
+  getByA(url: string, params: any, name?: string): void;
 
   /**
    * 通过表单form下载
@@ -23,7 +23,7 @@ export interface IDownload {
    * @param params 接口参数，eg: {fileName: '导出'}
    * @param target 指定iframe目标名称
    */
-  labelByForm: (url: string, params: any, target?: string) => void;
+  getByForm(url: string, params: any, target?: string): void;
 }
 
 class Download implements IDownload {
@@ -34,7 +34,7 @@ class Download implements IDownload {
    * @param params 接口参数，eg: {fileName: '导出'}
    * @param name 文件名称
    */
-  labelByA(url: string, params: any, name?: string): void {
+  getByA(url: string, params: any, name?: string): void {
     const aLink = document.createElement('a');
     document.body.appendChild(aLink);
     aLink.style.display = 'none';
@@ -43,7 +43,7 @@ class Download implements IDownload {
       return v + '=' + params[v] + '&';
     });
     aLink.href = `${url}?${newParams.join('')}`;
-    if (name) aLink.download = name;
+    aLink.download = name ?? '文件';
     aLink.click();
     document.body.removeChild(aLink);
   }
@@ -55,7 +55,7 @@ class Download implements IDownload {
    * @param params 接口参数，eg: {fileName: '导出'}
    * @param target 指定iframe目标名称
    */
-  labelByForm(url: string, params: any, target?: string): void {
+  getByForm(url: string, params: any, target?: string): void {
     const form = document.createElement('form');
     form.action = url;
     form.method = 'post';

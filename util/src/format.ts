@@ -2,7 +2,7 @@
  * @Author: 张晗
  * @Date: 2021-12-24 11:25:14
  * @LastEditors: 张晗
- * @LastEditTime: 2021-12-24 16:41:45
+ * @LastEditTime: 2021-12-27 11:18:35
  * @Description: Format格式化
  */
 
@@ -18,16 +18,19 @@ export interface IFormat {
   dateToString(date?: Date, month?: number, division?: string): string;
 
   /**
-   * 时间戳转日期
+   * 时间戳转日期时间
    *
    * @param timestamp 时间戳
-   * @returns {String} eg: '2020-10-02'
+   * @param division 日期分隔符，默认为'-'
+   * @returns {String} eg: '2020-10-02 12:00:00'
    */
   timestampToDateTime(timestamp: number): string;
 
   /**
+   * 时间戳转日期
    *
    * @param timestamp 时间戳
+   * @param division 日期分隔符，默认为'-'
    * @returns {String} eg: '2020-10-02'
    */
   timestampToDate(timestamp: number, division?: string): string;
@@ -87,6 +90,18 @@ class Format implements IFormat {
   }
 
   /**
+   * 时间戳转日期
+   *
+   * @param timestamp 时间戳
+   * @param division 日期分隔符，默认为'-'
+   * @returns {String} eg: '2020-10-02'
+   */
+  timestampToDate(timestamp: number, division = '-'): string {
+    const dateTime = this.timestampToDateTime(timestamp, division);
+    return dateTime.split(' ')[0];
+  }
+
+  /**
    * 时间戳转时分秒
    *
    * @param timestamp 时间戳
@@ -95,17 +110,6 @@ class Format implements IFormat {
   timestampToTime(timestamp: number): string {
     const dateTime = this.timestampToDateTime(timestamp);
     return dateTime.split(' ')[1];
-  }
-
-  /**
-   * 时间戳转日期
-   *
-   * @param timestamp 时间戳
-   * @returns {String} eg: '2020-10-02'
-   */
-  timestampToDate(timestamp: number): string {
-    const dateTime = this.timestampToDateTime(timestamp);
-    return dateTime.split(' ')[0];
   }
 }
 
